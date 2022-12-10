@@ -1,6 +1,7 @@
 package com.crud.tasks.service;
 
 import com.crud.tasks.domain.Task;
+import com.crud.tasks.exception.TaskNotFoundException;
 import com.crud.tasks.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class DbService {
         return repository.findAll();
     }
 
-    public Task getTask(final Long id) {
-        return repository.findById(id);
+    public Task getTask(final Long id) throws TaskNotFoundException {
+        return repository.findById(id).orElseThrow(TaskNotFoundException::new);
     }
 }

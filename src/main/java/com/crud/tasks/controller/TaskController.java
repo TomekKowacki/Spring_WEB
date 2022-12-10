@@ -2,6 +2,7 @@ package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.Task;
 import com.crud.tasks.domain.TaskDto;
+import com.crud.tasks.exception.TaskNotFoundException;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +27,8 @@ public class TaskController {
         return taskMapper.mapToTaskDtoList(tasks);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/tasks/{taskId}")
-    public TaskDto getTask(@PathVariable Long taskId) {
+    @GetMapping(value = "/{taskId}")
+    public TaskDto getTask(@PathVariable Long taskId) throws TaskNotFoundException {
         return taskMapper.mapToTaskDto(
                 service.getTask(taskId));
     }
