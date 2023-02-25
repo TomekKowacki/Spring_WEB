@@ -36,6 +36,7 @@ class SimpleEmailServiceTest {
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
+        mailMessage.setCc(mail.getToCc());
 
         //When
         simpleEmailService.send(mail);
