@@ -18,19 +18,14 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import static java.lang.reflect.Array.get;
-import static net.bytebuddy.matcher.ElementMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringJUnitWebConfig
 @WebMvcTest(TaskController.class)
-public class TaskCpontrollerTest {
+public class TaskControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
