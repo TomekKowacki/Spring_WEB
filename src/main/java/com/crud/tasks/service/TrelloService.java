@@ -20,6 +20,7 @@ public class TrelloService {
     private final TrelloClient trelloClient;
     private final SimpleEmailService emailService;
     private final AdminConfig adminConfig;
+    private final MailCreatorService creatorService;
     private static final String SUBJECT = "Tasks: New Trello card";
 
     public List<TrelloBoardDto> fetchTrelloBoards() {
@@ -32,7 +33,9 @@ public class TrelloService {
         ofNullable(newCard).ifPresent(card -> emailService.send(Mail.builder()
                 .mailTo(adminConfig.getAdminMail())
                 .subject(SUBJECT)
-                .message("New card: " + trelloCardDto.getName() + " has been created on your Trello account")
+                .message(creatorService.buildTrelloCardEmail
+                        ("New card: " + trelloCardDto.getName() + " has been created on your Trello account")
+                )
                 .build()
         ));
         return newCard;
